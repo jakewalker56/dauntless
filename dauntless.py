@@ -26,11 +26,11 @@ _SELECT_ALL = [0]
 
 #seems like collect minerals and gas map forces a terran race?
 
-class CollectMineralsAndGas(base_agent.BaseAgent):
+class Dauntless(base_agent.BaseAgent):
   """An agent specifically for solving the CollectMineralShards map."""
 
   def step(self, obs):
-    super(CollectMineralsAndGas, self).step(obs)
+    super(Dauntless, self).step(obs)
     #iterkeys', 'itervalues', 'keys', 'pop', 'popitem', 'setdefault', 'update', 'values', 'viewitems', 'viewkeys', 'viewvalues
     #print(obs.observation.keys())
     #cargo', 'minimap', 'game_loop', 'available_actions', 'screen', 'control_groups', 'multi_select', 'cargo_slots_available', 'player', 'single_select', 'build_queue', 'score_cumulative'

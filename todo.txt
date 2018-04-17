@@ -1,0 +1,10 @@
+-add ability to build more barracks, more supply depots, more scvs, more command centers
+-add ability to move screen back and forth
+-expand observed state
+-look for blizzcon / Deepmind AI workshop info internally?
+-backprop more than 1 Q-table entry
+-limit number of steps to encourage fast winning
+-add a bunch of noops after every meaningful decision to reduce backprop space
+-when harvesting, add a bunch of steps trying to harvest at +1 to +2 in any direction- it looks to me like trying to take a harvest action on a non-harvestable spot just leads to a no-op
+
+add .0 to 137 and 69 so we don't accidentally undercount barracks and depots
