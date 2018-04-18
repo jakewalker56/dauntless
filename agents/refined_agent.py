@@ -39,7 +39,8 @@ _NOT_QUEUED = [0]
 _QUEUED = [1]
 _SELECT_ALL = [2]
 
-DATA_FILE = 'refined_agent_data'
+DATA_FILE = '../data/refined_agent_data'
+RECORD_FILE = '../results/refined_agent_record.csv'
 
 ACTION_DO_NOTHING = 'donothing'
 ACTION_BUILD_SUPPLY_DEPOT = 'buildsupplydepot'
@@ -171,7 +172,7 @@ class SparseAgent(base_agent.BaseAgent):
             
             self.qlearn.q_table.to_pickle(DATA_FILE + '.gz', 'gzip')
 
-            fd = open('record.csv','a')
+            fd = open(RECORD_FILE,'a')
             fd.write(str(reward) + "\r\n")
             fd.close()
             
@@ -218,8 +219,8 @@ class SparseAgent(base_agent.BaseAgent):
             hot_squares = np.zeros(4)        
             enemy_y, enemy_x = (obs.observation['minimap'][_PLAYER_RELATIVE] == _PLAYER_HOSTILE).nonzero()
             for i in range(0, len(enemy_y)):
-                y = int(math.ceil((enemy_y[i] + 1) / 32))
-                x = int(math.ceil((enemy_x[i] + 1) / 32))
+                y = int(math.ceil((enemy_y[i] + 1) / 32.0))
+                x = int(math.ceil((enemy_x[i] + 1) / 32.0))
                 
                 hot_squares[((y - 1) * 2) + (x - 1)] = 1
             
@@ -232,8 +233,8 @@ class SparseAgent(base_agent.BaseAgent):
             green_squares = np.zeros(4)        
             friendly_y, friendly_x = (obs.observation['minimap'][_PLAYER_RELATIVE] == _PLAYER_SELF).nonzero()
             for i in range(0, len(friendly_y)):
-                y = int(math.ceil((friendly_y[i] + 1) / 32))
-                x = int(math.ceil((friendly_x[i] + 1) / 32))
+                y = int(math.ceil((friendly_y[i] + 1) / 32.0))
+                x = int(math.ceil((friendly_x[i] + 1) / 32.0))
                 
                 green_squares[((y - 1) * 2) + (x - 1)] = 1
             
