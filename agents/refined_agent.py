@@ -39,6 +39,8 @@ _NOT_QUEUED = [0]
 _QUEUED = [1]
 _SELECT_ALL = [2]
 
+_PRODUCTION = True
+
 DATA_FILE = '../data/refined_agent_data'
 RECORD_FILE = '../results/refined_agent_record.csv'
 
@@ -66,7 +68,7 @@ class QLearningTable:
         self.actions = actions  # a list
         self.lr = learning_rate
         self.gamma = reward_decay
-        self.epsilon = e_greedy
+        self.epsilon = 0.99 if _PRODUCTION else e_greedy
         self.q_table = pd.DataFrame(columns=self.actions, dtype=np.float64)
         self.disallowed_actions = {}
 
@@ -96,7 +98,7 @@ class QLearningTable:
         return action
 
     def learn(self, s, a, r, s_):
-        if s == s_:
+        if s == s_ or _PRODUCTION:
             return
         
         self.check_state_exist(s_)
